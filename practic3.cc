@@ -39,6 +39,6 @@ int main() {
   std::vector<Movie> storage;
   std:;cout << "Введите количесвто фильмов: " << std::endl;
 
-  
+
   for ()
 }
