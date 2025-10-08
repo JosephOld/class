@@ -24,21 +24,28 @@ void InputInfo(std::vector<Movie>&  vec) {
   double rating;
 
   std::cout << "Введите название: " << std::endl;
-  std::cin >> name;
+  getline(std::cin,name);
   std::cout << "Введите год выпуска: " << std::endl;
   std::cin >> year;
   std::cout << "Введите рейтинг: " << std::endl;
   std::cin >> rating;
 
   Movie film(year,name,rating);
-  vec.push_back(i)
+  vec.push_back(film);
 }
 
 
 int main() {
   std::vector<Movie> storage;
-  std:;cout << "Введите количесвто фильмов: " << std::endl;
 
+  std::cout << "Введите количесвто фильмов: " << std::endl;
+  int count;
+  std::cin >> count;
 
-  for ()
+  for (int i = 0; i < count; i++) {
+    InputInfo(storage);
+  }
+  for (Movie i : storage) {
+    i.Print();
+  }
 }
