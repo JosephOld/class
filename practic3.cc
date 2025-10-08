@@ -41,9 +41,11 @@ int main() {
   std::cout << "Введите количесвто фильмов: " << std::endl;
   int count;
   std::cin >> count;
+  std::cin.ignore();
 
   for (int i = 0; i < count; i++) {
     InputInfo(storage);
+    std::cin.ignore();
   }
   for (Movie i : storage) {
     i.Print();
