@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <list>
 
 class Movie {
   int year;
@@ -12,13 +13,22 @@ public:
   name = n;
   rating = r;
  }
+ int GetYear() {
+  return year;
+ }
+ std::string GetName() {
+    return name;
+ }
+ double GetRating() {
+  return rating;
+ }
  void Print() {
-  std::cout << year << name << rating << std::endl;
+  std::cout << year << ' ' << name << ' ' << rating << std::endl;
  }
 };
 
 
-void InputInfo(std::vector<Movie>&  vec) {
+void InputInfo(std::list<Movie>&  list) {
   std::string name;
   int year;
   double rating;
@@ -31,12 +41,21 @@ void InputInfo(std::vector<Movie>&  vec) {
   std::cin >> rating;
 
   Movie film(year,name,rating);
-  vec.push_back(film);
+  list.push_back(film);
 }
 
+void Sort(std::list<Movie>& list) {
+  list.remove_if([](Movie film){
+    return film.GetRating() < 7.5;
+  });
+
+  list.sort([](Movie a,Movie b){
+    return a.GetYear() < b.GetYear();
+  });
+}
 
 int main() {
-  std::vector<Movie> storage;
+  std::list<Movie> storage;
 
   std::cout << "Введите количесвто фильмов: " << std::endl;
   int count;
@@ -47,7 +66,12 @@ int main() {
     InputInfo(storage);
     std::cin.ignore();
   }
+
+  Sort(storage);
+
   for (Movie i : storage) {
     i.Print();
+    std::cout << std::endl;
   }
+  return 0;
 }
