@@ -17,14 +17,21 @@ class Player {
     level = l;
     points = p;
   }
+  double GetPoints() {
+    return points;
+  }
+  std::string GetName() {
+    return name;
+  }
 };
 
 
 void Input(std::vector<Player>& vec, int count) {
   std::cout << "Введите параметры ваших игроков: " << std::endl;
-  for (int i = 0; i < count;  ш++) {
-    std::cout << "Введите имя игрок номер " << i << std::endl;
+  for (int i = 0; i < count;  i++) {
+    std::cout << "Введите имя игрока номер " << i + 1 << std::endl;
     std::string name;
+    std::cin.ignore();
     std::getline(std::cin, name);
 
     std::cout << "Введите уровень вашего игрока: " << std::endl;
@@ -42,7 +49,16 @@ void Input(std::vector<Player>& vec, int count) {
 
 
 void Top3(std::vector<Player>& vec) {
-  
+  std::sort(vec.begin(),vec.end(),[](Player a,Player b) {
+    return a.GetPoints() > b.GetPoints();
+  });
+}
+
+
+void Print(std::vector<Player>& vec) {
+  for (int i = 0; i < 3; ++i) {
+    std::cout << i + 1 << ' ' <<  "место: " << vec.at(i).GetName() << std::endl;
+  }
 }
 
 
@@ -54,7 +70,12 @@ int main() {
     std::cout << "n/a";
     return 0;
   }
-  std::cin.ignore();
 
   std::vector<Player> data;
+  Input(data,count);
+  std::cin.ignore();
+  Top3(data);
+  Print(data);
+
+  return 0;
 }
